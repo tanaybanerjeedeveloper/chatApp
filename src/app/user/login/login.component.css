@@ -1,0 +1,10 @@
+.login-body{
+    position: fixed;
+    min-width: 100%;
+    /* background-image: url("C:/Users/s m/Desktop/image3.jpg"); */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    background-size: cover;
+    background-color: #393e46;
+}

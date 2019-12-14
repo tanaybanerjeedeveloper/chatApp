@@ -1,0 +1,15 @@
+ .signup-body{
+    position: relative;
+    min-width: 100%;
+    /* min-height: 100%; */
+    /* width: 100%; */
+    height: auto;
+    /* top: 0;
+    left: 0; */
+    /* background-image: url("C:/Users/s m/Desktop/image3.jpg"); */
+    background-color: #393e46;
+    /* background-repeat: no-repeat; */
+    background-size: 100%;
+    background-position: center;
+    background-size: cover; 
+} 
