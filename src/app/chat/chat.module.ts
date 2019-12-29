@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [ChatBoxComponent],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot() ,
     RouterModule.forChild([

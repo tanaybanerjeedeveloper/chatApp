@@ -91,23 +91,27 @@ export class SocketService {
   }
    
 
-   public getChat(senderId, receiverId, skip): Observable<any> {
+  //  public getChat(senderId, receiverId, skip): Observable<any> {
 
-    return this.http.get(`${this.url}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&skip=${skip}&authToken=${this.cookie.get('authtoken')}`).pipe(
+  //   return this.http.get(`${this.url}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&skip=${skip}&authToken=${this.cookie.get('authtoken')}`).pipe(
       
-        tap(data => console.log('Data Received')),
-        catchError((this.handleError))
-      )
+  //       tap(data => console.log('Data Received')),
+  //       catchError((this.handleError))
+  //     )
+
+  // }
+
+  public getChat(senderId,receiverId,skip):Observable<any>{
+    return this.http.get(`${this.url}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&skip=${skip}&authToken=${this.cookie.get('authtoken')}`).pipe(
+      tap(data=>console.log('Data Received')),
+      catchError((this.handleError))
+    )
 
   }
 
   public exitSocket = () =>{
-
-
-    this.socket.disconnect();
-
-
-  }
+       this.socket.disconnect();
+}
   //exit socket
  
       private handleError(err:HttpErrorResponse) {

@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4200', options: {} };
   imports: [
     BrowserModule,
     SocketIoModule.forRoot(config),
+    FormsModule  ,
     AppRoutingModule,
     ChatModule,
     UserModule,

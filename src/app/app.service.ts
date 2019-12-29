@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {HttpErrorResponse, HttpParams} from '@angular/common/http';
 import{ Observable} from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 // import { Cookie } from 'ng2-cookies/ng2-cookie
 
@@ -12,7 +13,7 @@ export class AppService {
 
   private url = 'https://chatapi.edwisor.com';
 
-  constructor(private http:HttpClient) { }//end of constructor
+  constructor(private http:HttpClient,public cookie: CookieService) { }//end of constructor
 
   public getUserInfoFromLocalStorage():any {
     return JSON.parse(localStorage.getItem('userInfo'));
@@ -42,4 +43,33 @@ export class AppService {
     return this.http.post(`${this.url}/api/v1/users/login`,params);
 
   }//end of signin function
+
+  public logout():Observable<any>{
+
+    const params = new HttpParams()
+         .set('authToken',this.cookie.get('authtoken') );
+
+      return this.http.post(`${this.url}/api/v1/users/logout`,params);
+
+  }// end of logout function
+
+  public handleError(err: HttpErrorResponse){
+    
+    let errorMessage = '';
+
+    if(err.error instanceof Error){
+
+      errorMessage = `An error occured: ${err.error.message}`;
+    
+    }else {
+
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    
+    }
+    console.error(errorMessage);
+
+    return Observable.throw(errorMessage);
+
+
+  }
 }
