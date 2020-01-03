@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AppService } from './../../app.service';
 import { ToastrService } from 'ngx-toastr';
+import { ChatMessage } from './chat';
 
 
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -54,27 +55,27 @@ export class ChatBoxComponent implements OnInit {
     this.receiverName=this.cookie.get("receiverName");
     console.log(this.receiverName);
     
-    // if(this.receiverId){
-    //   this.userSelectedToChat(this.receiverId,this.receiverName);
-    // }
-    this.checkStatus();
+    if(this.receiverId){
+      this.userSelectedToChat(this.receiverId,this.receiverName);
+    }
+    // this.checkStatus();
     this.verifyUserConfirmation();
     this.getOnlineUserList();
     this.getMessageFromAUser();
 
-    if(this.receiverId){
-      this.userSelectedToChat(this.receiverId,this.receiverName);
-    }
+    // if(this.receiverId){
+    //   this.userSelectedToChat(this.receiverId,this.receiverName);
+    // }
   }
 
-  public checkStatus: any = ()=>{
-    if(this.cookie.get('authtoken')===undefined || this.cookie.get('authtoken')==="" || this.cookie.get('authtoken')===null){
-      this.router.navigate(['/']);
-      return false;
-    } else {
-      return true;
-    }
-  }
+  // public checkStatus: any = ()=>{
+  //   if(this.cookie.get('authtoken')===undefined || this.cookie.get('authtoken')==="" || this.cookie.get('authtoken')===null){
+  //     this.router.navigate(['/']);
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   public verifyUserConfirmation: any=()=>{
     this.socket.verifyUser()
@@ -170,7 +171,7 @@ export class ChatBoxComponent implements OnInit {
 
     if(this.messageText){
 
-      let chatMsgObject = {
+      let chatMsgObject: ChatMessage = {
         senderName: this.userInfo.firstName + " " + this.userInfo.lastName,
         senderId: this.userInfo.userId,
         receiverName: this.cookie.get('receiverName'),
